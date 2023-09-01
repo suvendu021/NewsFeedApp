@@ -11,7 +11,8 @@
         android:layout_height="?android:attr/actionBarSize"
         android:id="@+id/toolbar"
         android:background="@color/white"
-        android:layout_marginTop="0dp">
+        android:layout_marginTop="0dp"
+        android:elevation="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"

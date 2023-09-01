@@ -2,6 +2,7 @@ package com.example.newsfeedapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,9 @@ public class webView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(getApplicationContext(),R.color.purple));
+
         toolbar=findViewById(R.id.toolbar);
         webView=findViewById(R.id.webView);
 
