@@ -6,6 +6,11 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -15,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
     TabItem home,sports,health,entertainment,science,technology;
     PagerAdapter pagerAdapter;
     Toolbar toolbar;
+
+    ImageView app_icon_image;
+
+    LinearLayout linearLayout;
     String apiKey="3dcbb1ef2d8c4d5b945fedf5d7997ae6";
 
     @Override
@@ -33,6 +42,22 @@ public class MainActivity extends AppCompatActivity {
         science=findViewById(R.id.science);
         technology=findViewById(R.id.technology);
         entertainment=findViewById(R.id.entertainment);
+        app_icon_image=findViewById(R.id.app_icon_image);
+        linearLayout=findViewById(R.id.linear_layout);
+
+
+
+        linearLayout.animate().alpha(0f).setDuration(1);
+
+        TranslateAnimation animation=new TranslateAnimation(0,0,0,0);
+        animation.setDuration(2000);
+        animation.setFillAfter(false);
+        animation.setAnimationListener(new MyAnimationListener());
+
+        app_icon_image.setAnimation(animation);
+
+
+
 
         ViewPager viewPager=findViewById(R.id.fragmentContainer);
         tabLayout=findViewById(R.id.tabLayout);
@@ -62,5 +87,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+    }
+
+    private class MyAnimationListener implements Animation.AnimationListener{
+
+        @Override
+        public void onAnimationStart(Animation animation) {
+
+        }
+
+        @Override
+        public void onAnimationEnd(Animation animation) {
+            app_icon_image.clearAnimation();
+            app_icon_image.setVisibility(View.INVISIBLE);
+            linearLayout.animate().alpha(1f).setDuration(1000);
+        }
+
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+
+        }
     }
 }
